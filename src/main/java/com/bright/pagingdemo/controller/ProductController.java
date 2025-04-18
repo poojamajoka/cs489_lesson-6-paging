@@ -27,4 +27,25 @@ public class ProductController {
     }
 
 
+    @GetMapping
+    public ResponseEntity<Page<ProductResponseDto>> searchProducts(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int pageSize,
+            @RequestParam(defaultValue = "id") String sortBy,
+            @RequestParam(defaultValue = "asc") String sortDirection
+    ) {
+        Page<ProductResponseDto> productResponseDtos = productService.searchProducts(page, pageSize, sortDirection, sortBy);
+        return ResponseEntity.status(HttpStatus.OK).body(productResponseDtos);
+    }
+    @GetMapping("/by-category")
+    public ResponseEntity<Page<ProductResponseDto>> searchProductsByCategory(
+            @RequestParam String category,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int pageSize,
+            @RequestParam(defaultValue = "id") String sortBy,
+            @RequestParam(defaultValue = "asc") String sortDirection
+    ) {
+        Page<ProductResponseDto> productResponseDtos = productService.searchProductByCategory(category,page, pageSize, sortDirection, sortBy);
+        return ResponseEntity.status(HttpStatus.OK).body(productResponseDtos);
+    }
 }

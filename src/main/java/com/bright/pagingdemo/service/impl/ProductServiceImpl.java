@@ -32,4 +32,18 @@ public class ProductServiceImpl implements ProductService {
         Product savedProduct = productRepository.save(product);
         return productMapper.productToProductResponseDto(savedProduct);
     }
+
+    @Override
+    public Page<ProductResponseDto> searchProducts(int page, int pageSize, String sortDirection, String sortBy) {
+        Pageable pageable = PageRequest.of(page, pageSize, Sort.by(sortDirection, sortBy));
+        Page<Product> productPage = productRepository.findAll(pageable);
+        return productPage.map(productMapper::productToProductResponseDto);
+    }
+
+    @Override
+    public Page<ProductResponseDto> searchProductByCategory(String category, int page, int pageSize, String sortDirection, String sortBy) {
+        Pageable pageable = PageRequest.of(page, pageSize, Sort.by(sortDirection, sortBy));
+        Page<Product> productPage = productRepository.findByCategory(category,pageable);
+        return productPage.map(productMapper::productToProductResponseDto);
+    }
 }

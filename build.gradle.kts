@@ -34,6 +34,8 @@ dependencies {
     annotationProcessor("org.mapstruct:mapstruct-processor:1.6.3")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    runtimeOnly("com.mysql:mysql-connector-j") //For MySQL Driver
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
 tasks.withType<Test> {
