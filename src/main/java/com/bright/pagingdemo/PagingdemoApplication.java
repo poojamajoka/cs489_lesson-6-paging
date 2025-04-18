@@ -58,7 +58,7 @@ public class PagingdemoApplication {
             );
 
 
-            products.forEach(productService::createProduct);
+           // products.forEach(productService::createProduct);
         };
     }
 }

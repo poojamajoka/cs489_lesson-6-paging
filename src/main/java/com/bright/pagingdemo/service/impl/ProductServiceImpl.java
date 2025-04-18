@@ -35,7 +35,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Page<ProductResponseDto> searchProducts(int page, int pageSize, String sortDirection, String sortBy) {
-        Pageable pageable = PageRequest.of(page, pageSize, Sort.by(sortDirection, sortBy));
+        Pageable pageable = PageRequest.of(page, pageSize);
         Page<Product> productPage = productRepository.findAll(pageable);
         return productPage.map(productMapper::productToProductResponseDto);
     }
