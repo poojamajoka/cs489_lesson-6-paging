@@ -16,6 +16,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * service class
+ */
 @Service
 @RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
